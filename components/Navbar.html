@@ -1,0 +1,31 @@
+<nav class='flex justify-center items-center fixed mt-2 top-0 left-0 w-screen'>
+    <div
+        class=" w-3/4 bg-slate-200 rounded-full flex py-3 px-10 justify-between items-center backdrop-blur-md bg-transparent border border-slate-700">
+
+        <a href="index.php" class="font-semibold text-xl">CAR</a>
+
+        <ul class='flex gap-20 items-center text-lg'>
+            <a href="index.php">Home</a>
+            <a href="about.php">About</a>
+            <a href="cars.php">Cars</a>
+            <a href="contact.php">Contact</a>
+            <a href="admin.php">Admin</a>
+        </ul>
+
+    </div>
+</nav>
+
+
+<script>
+
+    const ulA = document.querySelectorAll("nav ul a");
+
+    Array.from(ulA).forEach(element => {
+
+        const a = element;
+
+        if (window.location.pathname.includes(a.getAttribute("href")))
+        a.classList.add("font-bold")
+    });
+
+</script>
