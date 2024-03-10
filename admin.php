@@ -23,6 +23,7 @@
             <a href='' class='px-6 py-1.5 bg-amber-500 rounded-md text-white font-semibold'>Refresh</a>
             <a href='booking.php' class='px-6 py-1.5 bg-emerald-500 rounded-md text-white font-semibold'>See
                 Bookings</a>
+            <button id="logout" class='px-6 py-1.5 bg-red-500 rounded-md text-white font-semibold'>Log Out</button>
         </div>
 
         <div class="mt-10 flex flex-col gap-6">
@@ -63,7 +64,8 @@
                                 <?php echo $row['car_rent']; ?> INR
                             </p>
                             <p class='mt-3 font-semibold'>
-                                TYPE : <?php echo $row['car_type']; ?>
+                                TYPE :
+                                <?php echo $row['car_type']; ?>
                             </p>
                             <div class="mt-8 flex gap-6">
                                 <a href="edit-car.php?car_name=<?php echo urlencode($row['car_name']); ?>&car_model=<?php echo urlencode($row['car_model']); ?>&car_type=<?php echo urlencode($row['car_type']); ?>&car_rent=<?php echo urlencode($row['car_rent']); ?>"
@@ -93,10 +95,35 @@
 
     </div>
 
-
-
-
     <?php include("./components/Footer.html"); ?>
+
+
+    <script>
+
+        const logout  = document.querySelector("#logout")
+        logout.onclick = () => {
+            localStorage.clear()
+            window.location.replace("login.php")
+        }
+
+
+        let l = localStorage.getItem("admin-login")
+        if (l == null) {
+            window.location.replace("login.php");
+        }
+        else {
+            l = JSON.parse(l);
+
+            if (l.login) {
+                if (l.email != "star@gmail.com") {
+                    window.location.replace("login.php");
+                }
+            }
+            else {
+                window.location.replace("login.php");
+            }
+        }
+    </script>
 
 </body>
 
