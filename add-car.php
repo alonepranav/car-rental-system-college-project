@@ -10,10 +10,20 @@
 
 <body>
 
-    <?php include("./components/Navbar.html"); ?>
+    <?php include ("./components/Navbar.html"); ?>
+
+    <?php
+    session_start();
+
+    if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] === false) {
+        echo "<script>window.location.href='login.php';</script>";
+        exit;
+    }
+    ?>
 
     <div class='min-h-screen w-screen flex justify-center items-center pt-32 pb-10'>
-        <form class="rounded-2xl w-2/4 px-5 py-7 border border-slate-400" enctype="multipart/form-data" action="add-car-db.php" method="POST">
+        <form class="rounded-2xl w-2/4 px-5 py-7 border border-slate-400" enctype="multipart/form-data"
+            action="add-car-db.php" method="POST">
 
             <p class='text-3xl font-semibold text-center'>Add Car</p>
 
@@ -21,8 +31,11 @@
 
                 <div class="flex flex-col gap-1">
                     <label>Car Name</label>
-                    <input required name='car_name' type="text"
-                        class='py-2 px-3 w-full border border-slate-400 rounded-md outline-none' />
+                    <select required name="car_name" id=""
+                        class='py-2 px-3 w-full border border-slate-400 rounded-md outline-none'>
+                        <option value="">Select Car</option>
+                        <option value="Thar">Thar</option>
+                    </select>
                 </div>
 
                 <div class="flex flex-col gap-1">
@@ -55,12 +68,6 @@
                         class='py-2 px-3 w-full border border-slate-400 rounded-md outline-none' />
                 </div>
 
-                <div class="flex flex-col gap-1">
-                    <label>Car Image</label>
-                    <input required name='car_image' type="file"
-                        class='py-2 px-3 w-full border border-slate-400 rounded-md outline-none' />
-                </div>
-
                 <div class="flex justify-center mt-6 mb-4">
                     <button
                         class='py-1.5 px-8 border bg-blue-500 text-white font-semibold border-slate-400 rounded-md outline-none'>Add
@@ -71,7 +78,7 @@
         </form>
     </div>
 
-    <?php include("./components/Footer.html"); ?>
+    <?php include ("./components/Footer.html"); ?>
 
 </body>
 

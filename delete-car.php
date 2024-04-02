@@ -1,15 +1,11 @@
 <?php
+include ("./ConnectDB.php");
+?>
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "car";
 
-$connection = new mysqli($servername, $username, $password, $database);
-
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
+<?php
+ 
+global $connection;
 
 if (isset($_GET['car_name']) && isset($_GET['car_model']) && isset($_GET['car_type'])) {
 
@@ -28,7 +24,7 @@ if (isset($_GET['car_name']) && isset($_GET['car_model']) && isset($_GET['car_ty
         exit();
     }
 } else {
-    header("Location: index.php");
+    echo "<script> alert('Error'); window.location.replace('admin.php')</script>";
     exit();
 }
 ?>

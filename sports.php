@@ -1,7 +1,3 @@
-<?php
-include ("./ConnectDB.php");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,15 +15,21 @@ include ("./ConnectDB.php");
     <div>
         <div class="py-14 mt-16">
             <div class="text-center text-4xl font-semibold tracking-wide">
-                <p>Our <span class='text-blue-500'>Cars</span></p>
+                <p>Our <span class='text-blue-500'>Sports Cars</span></p>
             </div>
 
             <div class="flex gap-10 mt-16 items-center justify-center flex-wrap">
 
                 <?php
+                include ("./ConnectDB.php");
+                ?>
+
+
+                <?php
 
                 global $connection;
-                $sql = "SELECT * FROM cars";
+
+                $sql = "SELECT * FROM cars WHERE car_type = 'sports'";
 
                 $result = $connection->query($sql);
 
@@ -72,6 +74,7 @@ include ("./ConnectDB.php");
     </div>
 
     <?php include ("./components/Footer.html"); ?>
+
 
 </body>
 

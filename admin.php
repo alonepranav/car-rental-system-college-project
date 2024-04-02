@@ -1,3 +1,7 @@
+<?php
+include ("./ConnectDB.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,36 +14,34 @@
 
 <body>
 
-    <?php include("./components/Navbar.html"); ?>
+    <?php include ("./components/Navbar.html"); ?>
+
+    <!-- <?php
+    session_start();
+
+    if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] === false) {
+        echo "<script>window.location.href='login.php';</script>";
+        exit;
+    }
+    ?> -->
 
     <div class='py-28 px-20'>
-
         <div class="text-3xl font-semibold tracking-wider">
             <p>Admin</p>
         </div>
 
         <div class="mt-10 flex gap-5">
             <a href='add-car.php' class='px-6 py-1.5 bg-blue-600 rounded-md text-white font-semibold'>Add Cars</a>
-            <a href='' class='px-6 py-1.5 bg-amber-500 rounded-md text-white font-semibold'>Refresh</a>
             <a href='booking.php' class='px-6 py-1.5 bg-emerald-500 rounded-md text-white font-semibold'>See
                 Bookings</a>
-            <button id="logout" class='px-6 py-1.5 bg-red-500 rounded-md text-white font-semibold'>Log Out</button>
+            <a href="logout.php" class='px-6 py-1.5 bg-red-500 rounded-md text-white font-semibold'>Log Out</a>
         </div>
 
         <div class="mt-10 flex flex-col gap-6">
 
             <?php
-
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $database = "car";
-
-            $connection = new mysqli($servername, $username, $password, $database);
-
-            if ($connection->connect_error) {
-                die("Connection failed: " . $connection->connect_error);
-            }
+            
+            global $connection;
 
             $sql = "SELECT * FROM cars";
             $result = $connection->query($sql);
@@ -87,43 +89,13 @@
             }
             $connection->close();
             ?>
-
-
-
         </div>
 
 
     </div>
 
-    <?php include("./components/Footer.html"); ?>
+    <?php include ("./components/Footer.html"); ?>
 
-
-    <script>
-
-        const logout  = document.querySelector("#logout")
-        logout.onclick = () => {
-            localStorage.clear()
-            window.location.replace("login.php")
-        }
-
-
-        let l = localStorage.getItem("admin-login")
-        if (l == null) {
-            window.location.replace("login.php");
-        }
-        else {
-            l = JSON.parse(l);
-
-            if (l.login) {
-                if (l.email != "star@gmail.com") {
-                    window.location.replace("login.php");
-                }
-            }
-            else {
-                window.location.replace("login.php");
-            }
-        }
-    </script>
 
 </body>
 

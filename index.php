@@ -10,15 +10,15 @@
 
 <body>
 
-    <?php include("./components/Navbar.html"); ?>
+    <?php include ("./components/Navbar.html"); ?>
 
-    <?php include("./components/home/Home.html"); ?>
+    <?php include ("./components/home/Home.html"); ?>
 
-    <?php include("./components/home/OurServices.html"); ?>
+    <?php include ("./components/home/OurServices.html"); ?>
+          
+    <?php include ("./components/home/OurCars.php"); ?>
 
-    <?php include("./components/home/OurCars.php"); ?>
-
-    <?php include("./components/Footer.html"); ?>
+    <?php include ("./components/Footer.html"); ?>
 
 </body>
 

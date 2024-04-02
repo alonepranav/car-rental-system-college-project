@@ -1,15 +1,11 @@
 <?php
+include ("./ConnectDB.php");
+?>
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "car";
 
-$connection = new mysqli($servername, $username, $password, $database);
+<?php
 
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
+global $connection;
 
 if (isset($_GET['car_name']) && isset($_GET['car_model']) && isset($_GET['car_type'])) {
 
@@ -28,8 +24,7 @@ if (isset($_GET['car_name']) && isset($_GET['car_model']) && isset($_GET['car_ty
         exit();
     }
 } else {
-
-    header("Location: index.php");
+    echo "<script>window.location.replace('admin.php')</script>";
     exit();
 }
 ?>
@@ -49,18 +44,7 @@ if (isset($_GET['car_name']) && isset($_GET['car_model']) && isset($_GET['car_ty
 
 <body>
 
-    <?php include("./components/Navbar.html"); ?>
-
-
-
-
-
-
-
-
-
-
-
+    <?php include ("./components/Navbar.html"); ?>
 
 
     <div class='min-h-screen w-screen flex justify-center items-center pt-32 pb-10'>
@@ -83,7 +67,7 @@ if (isset($_GET['car_name']) && isset($_GET['car_model']) && isset($_GET['car_ty
 
                 <div class="flex flex-col gap-1">
                     <label>Car Name</label>
-                    <input required name='car_name' type="text" value="<?php echo $row['car_name']; ?>"
+                    <input required readonly name='car_name' type="text" value="<?php echo $row['car_name']; ?>"
                         class='py-2 px-3 w-full border border-slate-400 rounded-md outline-none' />
                 </div>
 
@@ -117,12 +101,6 @@ if (isset($_GET['car_name']) && isset($_GET['car_model']) && isset($_GET['car_ty
                         class='py-2 px-3 w-full border border-slate-400 rounded-md outline-none' />
                 </div>
 
-                <div class="flex flex-col gap-1">
-                    <label>Car Image</label>
-                    <input required name='car_image' type="file"
-                        class='py-2 px-3 w-full border border-slate-400 rounded-md outline-none' />
-                </div>
-
                 <div class="flex justify-center mt-6 mb-4">
                     <button
                         class='py-1.5 px-8 border bg-blue-500 text-white font-semibold border-slate-400 rounded-md outline-none'>Edit
@@ -134,21 +112,7 @@ if (isset($_GET['car_name']) && isset($_GET['car_model']) && isset($_GET['car_ty
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <?php include("./components/Footer.html"); ?>
+    <?php include ("./components/Footer.html"); ?>
 
 </body>
 

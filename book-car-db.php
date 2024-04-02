@@ -1,14 +1,11 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "car";
+include ("./ConnectDB.php");
+?>
 
-$connection = new mysqli($servername, $username, $password, $database);
 
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
+<?php
+ 
+global $connection;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

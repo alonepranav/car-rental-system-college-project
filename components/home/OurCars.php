@@ -1,3 +1,6 @@
+<?php
+include ("./ConnectDB.php");
+?>
 <div class="pt-14 pb-7">
     <div class="text-center text-4xl font-semibold tracking-wide">
         <p>Our <span class='text-blue-500'>Cars</span></p>
@@ -5,19 +8,10 @@
 
     <div class="flex gap-6 mt-20 items-center justify-center flex-wrap">
 
+
         <?php
-        // Database configuration
-        $servername = "localhost"; // Change this if your database is hosted on a different server
-        $username = "root"; // Replace with your MySQL username
-        $password = ""; // Replace with your MySQL password
-        $database = "car"; // Replace with your MySQL database name
-        
 
-        $connection = new mysqli($servername, $username, $password, $database);
-
-        if ($connection->connect_error) {
-            die("Connection failed: " . $connection->connect_error);
-        }
+        global $connection;
 
         $sql = "SELECT * FROM cars ";
 
@@ -48,7 +42,8 @@
                         </p>
 
                         <a href="car-info.php?car_name=<?php echo urlencode($row['car_name']); ?>&car_model=<?php echo urlencode($row['car_model']); ?>&car_type=<?php echo urlencode($row['car_type']); ?>&car_rent=<?php echo urlencode($row['car_rent']); ?>"
-                            class='bg-amber-400 px-5 py-1.5 text-white font-semibold mt-3 block w-fit rounded-md'>See Details</a>
+                            class='bg-amber-400 px-5 py-1.5 text-white font-semibold mt-3 block w-fit rounded-md'>See
+                            Details</a>
 
                     </div>
                 </div>

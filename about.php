@@ -65,10 +65,6 @@
 
     </div>
 
-
-
-
-
     <?php include("./components/Footer.html"); ?>
 
 </body>

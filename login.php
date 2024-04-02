@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,11 +11,11 @@
 
 <body>
 
-    <?php include("./components/Navbar.html"); ?>
+    <?php include ("./components/Navbar.html"); ?>
 
     <div class="h-screen w-screen flex justify-center items-center">
 
-        <form class="border border-slate-400 p-5 rounded-xl w-[28rem]">
+        <form class="border border-slate-400 p-5 rounded-xl w-[28rem]" method="POST" action="adminlogin.php">
             <p class="font-semibold text-3xl">Login Admin</p>
 
             <br>
@@ -22,14 +23,14 @@
 
             <div class="flex flex-col gap-0.5 mb-5">
                 <label class="text-lg text-stone-600">Email</label>
-                <input type="email" id="admin_email" class="border border-slate-400 py-1.5 rounded px-2"
+                <input type="email" name="email" required id="admin_email" class="border border-slate-400 py-1.5 rounded px-2"
                     placeholder="Enter Email">
             </div>
 
 
             <div class="flex flex-col gap-0.5 mb-5">
                 <label class="text-lg text-stone-600">Password</label>
-                <input type="password" id="admin_password" class="border border-slate-400 py-1.5 rounded px-2"
+                <input type="password" name="password" required id="admin_password" class="border border-slate-400 py-1.5 rounded px-2"
                     placeholder="Enter Password">
             </div>
 
@@ -43,29 +44,8 @@
 
     </div>
 
-    <?php include("./components/Footer.html"); ?>
+    <?php include ("./components/Footer.html"); ?>
 
-    <script>
-        const form = document.querySelector("form");
-
-        form.onsubmit = (e) => {
-            e.preventDefault()
-
-            const email = document.querySelector("form #admin_email").value;
-            const password = document.querySelector("form #admin_password").value;
-
-            if (email == "star@gmail.com" && password == "star") {
-                console.log(email, password)
-
-                localStorage.setItem("admin-login", JSON.stringify({ email, login: true }))
-                window.location.replace("admin.php")
-
-            }
-            else {
-                alert("Invalid credientials")
-            }
-        }
-    </script>
 
 </body>
 
